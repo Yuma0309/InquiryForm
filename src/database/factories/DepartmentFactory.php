@@ -25,7 +25,6 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->unique()->numberBetween(1, 10000), // 1〜10000の中で一意な数値
             'name' => '部署'.self::$sequence++, // 部署{num}：numには連番で数値が入る
             'manager_name' => $this->faker->name, // 姓名
             'created_at' => $this->faker->dateTime('now'), //現在までYmdHis

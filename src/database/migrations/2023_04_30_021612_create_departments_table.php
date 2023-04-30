@@ -14,8 +14,8 @@ class CreateDepartmentsTable extends Migration
     public function up()
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->bigInteger('id')->primary()->nullable(false); // 部署ID
-            $table->string('name', 20)->nullable(false); // 部署名
+            $table->id(); // 部署ID（Key：PK、型：BigIntegerを付ける必要あり）
+            $table->string('name', 20); // 部署名
             $table->string('manager_name', 20)->nullable(); // マネージャー名
             $table->datetime('created_at')->nullable(); // 作成日時
             $table->datetime('updated_at')->nullable(); // 更新日時
