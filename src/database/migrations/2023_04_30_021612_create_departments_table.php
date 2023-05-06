@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateDepartmentsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * マイグレーションを実行する
      *
      * @return void
      */
@@ -24,7 +24,7 @@ class CreateDepartmentsTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * マイグレーションを逆にする（up()メソッドで作成したテーブルを削除する）
      *
      * @return void
      */

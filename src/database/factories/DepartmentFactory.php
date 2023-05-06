@@ -8,19 +8,19 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class DepartmentFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
+     * ファクトリーの対応するモデル名
      *
      * @var string
      */
     protected $model = Department::class;
     
     /**
-     * Define the model's default state.
+     * モデルのデフォルト状態を定義する
      *
      * @return array
      */
 
-    private static $sequence = 1;
+    private static $sequence = 1; // インクリメントするために静的プロパティにする
     
     public function definition()
     {

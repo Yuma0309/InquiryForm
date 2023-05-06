@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateContactsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * マイグレーションを実行する
      *
      * @return void
      */
@@ -29,7 +29,7 @@ class CreateContactsTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * マイグレーションを逆にする（up()メソッドで作成したテーブルを削除する）
      *
      * @return void
      */
