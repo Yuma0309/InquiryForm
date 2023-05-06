@@ -1,0 +1,94 @@
+データベースの基本
+
+ハンズオンLv1
+・ Laravelの基本のハンズオンで実装したものを使用します。
+
+● データの取得
+1. contactsテーブルのデータを全て取得して下さい
+→ select * from contacts;
+
+2. departmentsテーブルのデータを全て取得して下さい
+→ select * from departments;
+
+3. departmentsテーブルのmanager_nameカラムのデータを全て取得して下さい
+→ select manager_name from departments;
+
+4. contactsテーブルのname、email、contentカラムのデータを全て取得して下さい
+→ select name, email, content from contacts;
+
+5. contactsテーブルの『女性』のデータを全て取得して下さい
+→ select * from contacts where gender = 2;
+
+6. contactsテーブルの年齢が『30歳以上』のデータを全て取得して下さい
+→ select * from contacts where age >= 30;
+
+7. departmentsテーブルのidが『3』の部署名を取得して下さい
+→ select name from departments where id = 3;
+
+8. contactsテーブルの『男性』かつ年齢が『20歳より上』のデータを全て取得して下さい
+→ select * from contacts where gender = 1 and age > 20;
+
+9. departmentsテーブルのidが『5』以下かつ『女性』のデータを全て取得して下さい
+→ select * from departments where id <= 5;
+※ departmentsテーブルは性別のカラムなし
+
+10. departmentsテーブルのidが『6〜10』のデータを全て取得して下さい
+→ select * from departments where id between 6 and 10;
+
+11. contactsテーブルのidが『1〜3』の年齢のデータを取得して下さい
+→ select age from contacts where id between 1 and 3;
+
+12. departmentsテーブルの『部署名1〜3』のmanager_name、idカラムのデータを取得して下さい（ただしクエリにはIn句を利用してください）
+→ select manager_name, id from departments where id in (select id from departments where id between 1 and 3);
+
+13. contactsテーブルのidが『3〜5』のid、name、contentカラムのデータを取得して下さい（ただしクエリにはIn句を利用してください）
+→ select id, name, content from contacts where id in (3, 4, 5);
+
+14. departmentsテーブルのidと、contactsテーブルのidが一致するデータを取得して下さい
+→ select * from departments join contacts on departments.id = contacts.id;
+
+● データの更新、削除
+15. departmentsテーブルのidが1の部署名を『Division１』に更新して下さい
+→ update departments set name = 'Division 1' where id = 1;
+
+16.contactsテーブルのidが3の名前を『テスト１』、内容を『こんにちは、世界』に更新して下さい
+→ update contacts set name = 'テスト1', content = 'こんにちは、世界' where id = 3;
+
+17.contactsテーブルの名前が『テスト１』のデータを削除して下さい
+→ delete from contacts where name = 'テスト1';
+
+
+ハンズオンLv2
+・ PHP/Laravelの基本のハンズオンで実装したものを使用します。
+
+1. お問い合わせデータの取得
+
+    ・ PHP/Laravelの基本のハンズオンで作成したお問い合わせ機能を使い、任意のメールアドレス・名前・お問い合わせ内容で問い合わせをしてください。
+    → 例. 任意のメールアドレス：test@gmail.com、名前：テスト、お問い合わせ内容：テストです！
+
+    ・ 上記終了後、SELECT文とWHERE句、JOIN句を用いてcontactsテーブル及びそれに紐づくdepartmentsテーブルのデータを取得してください。
+        なお、取得時の条件は以下の通りとします。
+        ⚪︎ WHERE句の条件は、お問い合わせ時に使用したメールアドレス
+        ⚪︎ 取得する値は、
+            ▪️ contactsテーブル: 名前、メールアドレス、内容
+            ▪️ departmentsテーブル: 部署名、マネージャー名
+            のみ取得してください。
+    →   select d.name as department_name, d.manager_name, c.name, c.email, c.content 
+        from departments as d join contacts as c on d.id = c.department_id 
+        where c.email = 'test@gmail.com';
+
+2. 部署テーブルへのデータの追加、更新、削除
+
+    1. departmentsテーブルに以下の値を持つレコードをINSERT文を用いて作成してください。
+        ・ 部署名: システム本部_test
+        ・ マネージャー名: 甲坂
+    → insert into departments (name, manager_name) values ('システム本部_test', '甲坂');
+    
+    2. 1. で作成したデータのうち
+        ・ 部署名を所属本部名へ
+        ・ マネージャー名を本部長名へ
+        UPDATE文を用いて変更してください。
+    → update departments set name = '所属本部名', manager_name = '本部長名' where name = 'システム本部_test';
+    
+    3. 2. で作成したデータのみをDELETE文を用いて削除してください。
+    → delete from departments where name = '所属本部名';
